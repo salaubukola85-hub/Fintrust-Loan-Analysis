@@ -32,15 +32,15 @@ Power BI was used to build the dashboards.
 - Default rate: 16%
 
 Top loan products by disbursement:
-- Business
-- Salary Earners
+- Education
 - SME
+- Salary Advance
 
 - Highest risk regions show default rate between 14%–16%
-- Monthly loan activity peaked in June & July
+- Monthly loan activity peaked in Feb, March and August
 
 Employment Type with highest loan uptake:
-- Self-employed category
+- Self-employed
 - Outstanding balance remains high at $929M, indicating repayment gaps.
 
 # Repayment Analysis Insights
@@ -48,12 +48,12 @@ Employment Type with highest loan uptake:
 - Total Amount Paid: $773M → Only 45% repayment performance
 
 Best performing repayment months:
-- July and August
+- August and September
 
 Payment Mode:
-- Transfer accounts for 33%
-- Cash & bank shortfalls seen
-- Certain regions (North & West) show stronger repayment patterns than others.
+- Cash: 33.8% | Transfer: 33.1% | POS: 33.0%
+The payment channels are almost evenly used, which indicates customers do not have a single dominant preference. This is both an opportunity and a risk
+- Abuja kubwa and Ikeja shows stronger repayment patterns than others
 
 # KEY PROBLEMS IDENTIFIED
 - Only 45% of repayment obligations fulfilled
@@ -65,10 +65,9 @@ Payment Mode:
 # RECOMMENDATIONS
 Strengthen Credit Risk Assessment
 - Introduce stricter eligibility scoring
-- Review SME and Business Loan underwriting standards
+- Review SME and Personal Loan underwriting standards
 
 Target High-Default Regions
-
 - Provide financial literacy training
 - Assign regional loan officers
 - Introduce incentives for early repayment
@@ -84,7 +83,6 @@ Encourage Digital Payments
 - Give 2–3% discount for early digital repayment
 
 Monitor High-Risk Customer Segments
-- Self-employed and SME should be reviewed with new risk models
 - Introduce guarantor or collateral support
 
 Quarterly Portfolio Review
