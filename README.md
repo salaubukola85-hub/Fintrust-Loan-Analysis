@@ -22,10 +22,9 @@ Power BI was used to build the dashboards.
 - Power BI (data modeling, dashboards)
 
 # Power BI Dashboards
-- Loan Analysis Dashboard ![Dashboard Screenshot] <img width="460" height="379" alt="Fintrust Loan Dashboard" src="https://github.com/user-attachments/assets/6e06e0c3-07b8-4794-a88e-9ac76ad6a66b" />
+- Loan Analysis Dashboard ![Dashboard Screenshot](<img width="460" height="379" alt="Fintrust Loan Dashboard" src="https://github.com/user-attachments/assets/6e06e0c3-07b8-4794-a88e-9ac76ad6a66b"/>)
 
-- Repayment Analysis Dashboard ![Dashboard Screenshot] <img width="424" height="354" alt="Fintrust Repayment Dashboard" src="https://github.com/user-attachments/assets/afabfd84-74f0-4ea4-b18c-5de8d5c24695" />
-/>
+- Repayment Analysis Dashboard ![Dashboard Screenshot](<img width="424" height="354" alt="Fintrust Repayment Dashboard" src="https://github.com/user-attachments/assets/afabfd84-74f0-4ea4-b18c-5de8d5c24695"/>)
 
 # KEY INSIGHTS
 # Loan Analysis Insights
