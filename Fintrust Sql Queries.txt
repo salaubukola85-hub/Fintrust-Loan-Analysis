@@ -1,0 +1,118 @@
+Unique Borrowers
+select count(distinct loan_id) as unique_borrowers
+from loans;
+
+Loans by Product
+select loan_product as product, count(*) as total_loans,
+sum(loan_amount) as total_disbursed from loans
+  group by loan_product
+  order by total_disbursed desc;
+
+Default rate by product
+select loan_product, count(*) as total_loans,
+  sum(case when loan_status = 'default' then 1 else 0 end) 
+  / count(*) *100 as default_rate_percent from loans
+group by loan_product
+order by default_rate_percent desc;
+
+Overall Default Rate
+select count(*) as total_loans,
+  sum(case when loan_status = 'default' then 1 else 0 end)
+  / count(*) *100 as overall_default_rate from loans;
+  
+Regional Default Analysis
+select c.region, count(l.loan_id) as Total_loans, 
+  sum(case when l.loan_status = 'default' then 1 else 0 end) 
+    as 'defaulted loans', 100.0 * sum(case when l.loan_status = 'Default'
+    then 1 else 0 end) / count(l.loan_id) as default_rate_percent
+    from loans l
+  inner join customers c
+  on l.customer_id = c.customer_id
+  where disbursement_date between '2024-01-01' and '2024-09-30'
+  group by c.region
+  order by default_rate_percent desc;
+  
+Average Credit Score by Loan Status
+select l.loan_status, count(l.loan_status) as total_loans, 
+     round(avg(c.credit_score), 2) as average_credit_score from loans l
+    inner join customers c
+    on l.customer_id= c.customer_id
+    group by l.loan_status
+    order by average_credit_score desc;
+
+Default Rate by Employment Type    
+select c.employment_type, count(loan_id) as total_loans,
+sum(case when l.loan_status = 'default' then 1 else 0 end) as defaulted_loans,
+round(sum(case when l.loan_status = 'default' then 1 else 0 end) * 100 / count(l.loan_id),
+2) as default_rate_percent from loans l
+inner join customers c 
+on l.customer_id = c.customer_id
+group by c.employment_type
+order by default_rate_percent desc;
+
+Top 10 customer by Total Payments
+select full_name,
+sum(p.amount_paid) as total_payments_made from loans l
+inner join customers c
+on c.customer_id = l.customer_id
+inner join payments p
+on l.loan_id = p.loan_id
+group by c.customer_id, full_name
+order by total_payments_made desc
+limit 10;
+
+Top 10 customers by Loan Amount
+select full_name,
+sum(l.loan_amount) as total_loan_amount from loans l
+inner join customers c
+on l.customer_id = c.customer_id
+group by c.customer_id, full_name
+order by total_loan_amount desc
+limit 10;
+
+Monthly Loan Disbursement Trend
+select date_format(disbursement_date, '%Y-%M') as month,
+count(loan_id) as total_loans,
+sum(loan_amount) as total_disbursed_amount from loans
+group by date_format(disbursement_date, '%Y-%M')
+order by min(disbursement_date);
+
+Monthly Repayment Trend
+select date_format(payment_date, '%Y-%M') as month,
+count(payment_id) as total_payments,
+sum(amount_paid) as total_repaid from payments
+group by date_format(payment_date, '%Y-%M')
+order by min(payment_date);
+
+Payment Mode Analysis
+select payment_mode,
+sum(amount_paid) as total_payments_paid from payments
+group by payment_mode
+order by total_payments_paid desc;
+
+Credit Score Bands
+select 
+case
+   when c.credit_score between 300 and 499 then '300-499 (poor)'
+   when c.credit_score between 500 and 649 then '500-649 (fair)'
+   when c.credit_score between 650 and 850 then '650-850 (good)'
+   end as credit_score_band,
+   count(l.loan_id) as total_laons,
+round(avg(l.loan_amount), 2) as avg_loan_amount from loans l
+inner join customers c
+on l.customer_id = c.customer_id
+group by credit_score_band
+order by avg_loan_amount desc;
+
+Multi loan Customer Profile
+select c.customer_id, full_name, count(distinct l.loan_id) as total_loan,
+sum(loan_amount) as total_loan_amount,
+sum(p.amount_paid) as total_repaid,
+round(sum(p.amount_paid) * 100 / sum(l.loan_amount), 2) as repayment_percentage
+from customers c
+inner join loans l
+on c.customer_id = l.customer_id
+left join payments p
+on l.loan_id = p.loan_id
+group by c.customer_id, full_name
+having count(distinct l.loan_id) > 1;
